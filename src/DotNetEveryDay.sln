@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DotNetEveryDay.Extensions", "DotNetEveryDay.Extensions\DotNetEveryDay.Extensions.fsproj", "{6F2378CB-FE09-4C45-A494-B3ABE3B5D994}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7864BF64-8BCA-4A02-9742-E37DCF8983EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetEveryDay.Extensions.Tests", "DotNetEveryDay.Extensions.Tests\DotNetEveryDay.Extensions.Tests.csproj", "{10197074-DF46-487B-9C1D-45F7DFC87D58}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F2378CB-FE09-4C45-A494-B3ABE3B5D994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F2378CB-FE09-4C45-A494-B3ABE3B5D994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F2378CB-FE09-4C45-A494-B3ABE3B5D994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F2378CB-FE09-4C45-A494-B3ABE3B5D994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10197074-DF46-487B-9C1D-45F7DFC87D58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10197074-DF46-487B-9C1D-45F7DFC87D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10197074-DF46-487B-9C1D-45F7DFC87D58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10197074-DF46-487B-9C1D-45F7DFC87D58}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{10197074-DF46-487B-9C1D-45F7DFC87D58} = {7864BF64-8BCA-4A02-9742-E37DCF8983EB}
+	EndGlobalSection
+EndGlobal
