@@ -5,6 +5,15 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+    
+    <PropertyGroup>
+        <PackageId>DotNetEveryDay.Extensions</PackageId>
+        <Version>0.0.1-alpha</Version>
+        <Authors>Toloymak</Authors>
+        <Company>DotNetEveryDay</Company>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/Toloymak/DotNetEveryDay</RepositoryUrl>
+    </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\DotNetEveryDay.Extensions.FSharp\DotNetEveryDay.Extensions.FSharp.fsproj" />
