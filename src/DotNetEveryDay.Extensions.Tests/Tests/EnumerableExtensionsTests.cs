@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using IdentityServer4.Helpers.Extensions;
+using DotNetEveryDay.Extensions.FSharp;
 using Xunit;
 
 namespace DotNetEveryDay.Extensions.Tests.Tests;

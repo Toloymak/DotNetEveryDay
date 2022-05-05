@@ -1,4 +1,4 @@
-namespace DotNetEveryDay.Extensions.Extensions
+namespace DotNetEveryDay.Extensions.FSharp
 
 open System.Globalization
 open System.Runtime.CompilerServices

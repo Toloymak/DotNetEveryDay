@@ -1,4 +1,4 @@
-namespace IdentityServer4.Helpers.Extensions
+namespace DotNetEveryDay.Extensions.FSharp
 
 open System
 open System.Collections.Generic

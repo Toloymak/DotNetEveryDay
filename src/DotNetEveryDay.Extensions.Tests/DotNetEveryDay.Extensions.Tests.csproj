@@ -21,7 +21,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DotNetEveryDay.Extensions\DotNetEveryDay.Extensions.fsproj" />
+      <ProjectReference Include="..\DotNetEveryDay.Extensions.FSharp\DotNetEveryDay.Extensions.FSharp.fsproj" />
+      <ProjectReference Include="..\DotNetEveryDay.Extensions\DotNetEveryDay.Extensions.csproj" />
     </ItemGroup>
 
 </Project>
