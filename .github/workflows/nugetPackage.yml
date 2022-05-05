@@ -35,7 +35,7 @@ jobs:
       run: dotnet pack --configuration Release --no-build --output .
       working-directory: src/DotNetEveryDay.Extensions
     - name: Push
-      run: dotnet nuget push DotNetEveryDay.Extensions.${VERSION}.nupkg --source https://nuget.pkg.github.com/acraven/index.json --api-key ${GITHUB_TOKEN}
+      run: dotnet nuget push DotNetEveryDay.Extensions.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_TOKEN}
       working-directory: src/DotNetEveryDay.Extensions
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
