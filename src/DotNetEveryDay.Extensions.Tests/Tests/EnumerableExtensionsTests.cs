@@ -1,5 +1,6 @@
+using System;
 using System.Collections.Generic;
-using DotNetEveryDay.Extensions.FSharp;
+using DotNetEveryDay.Extensions.Extensions;
 using Xunit;
 
 namespace DotNetEveryDay.Extensions.Tests.Tests;
@@ -49,7 +50,7 @@ public class EnumerableExtensionsTests
     [Fact]
     public void IsNullOrEmpty_EmptyCollection_ReturnTrue()
     {
-        var collection = new int[] {};
+        var collection = Array.Empty<int>();
         var result = collection.IsNullOrEmpty();
         Assert.True(result);
     }
