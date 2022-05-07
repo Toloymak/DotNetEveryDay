@@ -2,9 +2,9 @@ name: Code coverage analyzer
 
 on:
   push:
-    branches: [ dev/unit-tests ]
+    branches: [ main ]
   pull_request:
-    branches: [ dev/unit-tests ]
+    branches: [ main ]
 
 jobs:
   build:
