@@ -1,21 +1,14 @@
+using System;
 using System.ComponentModel;
 using DotNetEveryDay.Extensions.Extensions;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace DotNetEveryDay.Extensions.Tests.Tests;
 
 public class AttributeExtensionsTests
 {
-    private readonly ITestOutputHelper _testOutputHelper;
-    
     private const string SomeTestDescription = "SomeTestDescription";
-    
-    public AttributeExtensionsTests(ITestOutputHelper testOutputHelper)
-    {
-        _testOutputHelper = testOutputHelper;
-    }
-    
+
     [Fact]
     public void GetAttribute_AttributeIsExist_ReturnAttribute()
     {
@@ -40,6 +33,16 @@ public class AttributeExtensionsTests
         
         Assert.Null(someResult);
     }
+
+    [Fact]
+    public void GetAttribute_TypeIsNull_ThrowException()
+    {
+        // ReSharper disable once ConvertToLocalFunction
+        var getPropertyAction = () => ((Type) null!).GetPropertyAttribute<DescriptionAttribute>("FakeName");
+        
+        Assert.Throws<ArgumentNullException>(getPropertyAction);
+    }
+    
 
     private record TypeWithField
     {
