@@ -5,6 +5,8 @@ namespace DotNetEveryDay.Extensions.Extensions;
 
 public static class StringExtensions
 {
+    private const int MaxOptimizationStringLength = 1024;
+    
     /// <inheritdoc cref="string.IsNullOrEmpty"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsNullOrEmpty(this string? sourceString)
@@ -45,4 +47,35 @@ public static class StringExtensions
         => sourceString.IsNullOrWhiteSpace()
             ? sourceString 
             : $"{CultureInfo.CurrentCulture.TextInfo.ToLower(sourceString![0])}{sourceString[1..]}";
+
+    /// <summary>
+    /// Make the first latter small
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string? ToLowerStartOp(this string? sourceString)
+    {
+        if (sourceString.IsNullOrEmpty())
+            return sourceString;
+
+        var firstLetterInLowerTitle = CultureInfo.CurrentCulture.TextInfo.ToLower(sourceString![0]);
+        if (firstLetterInLowerTitle == sourceString[0])
+            return sourceString;
+        
+        if (MaxOptimizationStringLength < sourceString!.Length)
+            return $"{CultureInfo.CurrentCulture.TextInfo.ToLower(sourceString[0])}{sourceString[1..]}";
+        
+        Span<char> transformedString = stackalloc char[sourceString.Length];
+
+        for (var i = 0; i < sourceString.Length; i++)
+        {
+            if (i == 0)
+            {
+                transformedString[i] = firstLetterInLowerTitle;
+            }
+            else
+                transformedString[i] = sourceString[i];
+        }
+
+        return new string(transformedString); //new string(transformedString);
+    }
 }
