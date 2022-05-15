@@ -75,7 +75,7 @@ public class StringExtensions
     [InlineData("test string", "test string")]
     public void ToLowerStart(string sourceString, string resultString)
     {
-        var actualResult = sourceString.ToLowerStartOp();
+        var actualResult = sourceString.ToLowerStart();
 
         actualResult.Should().BeEquivalentTo(resultString);
     }
@@ -94,7 +94,7 @@ public class StringExtensions
         expectedString![0].Should().Be('t');
         
         
-        var resultString = inputString.ToLowerStartOp();
+        var resultString = inputString.ToLowerStart();
 
         resultString.Should().BeEquivalentTo(expectedString);
     }
