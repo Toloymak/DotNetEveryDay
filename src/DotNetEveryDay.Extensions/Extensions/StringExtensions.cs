@@ -5,6 +5,8 @@ namespace DotNetEveryDay.Extensions.Extensions;
 
 public static class StringExtensions
 {
+    private const int MaxOptimizationStringLength = 1000;
+    
     /// <inheritdoc cref="string.IsNullOrEmpty"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsNullOrEmpty(this string? sourceString)
@@ -40,9 +42,36 @@ public static class StringExtensions
     /// <summary>
     /// Make the first latter small
     /// </summary>
+    /// <param name="sourceString"></param>
+    /// <param name="memoryOptimization">Allow to increase memory allocation but make it slower</param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string? ToLowerStart(this string? sourceString)
-        => sourceString.IsNullOrWhiteSpace()
-            ? sourceString 
-            : $"{CultureInfo.CurrentCulture.TextInfo.ToLower(sourceString![0])}{sourceString[1..]}";
+    public static string? ToLowerStart(this string? sourceString, bool memoryOptimization = true)
+    {
+        if (sourceString.IsNullOrEmpty())
+            return sourceString;
+
+        var firstLetterInLowerTitle = CultureInfo.CurrentCulture.TextInfo.ToLower(sourceString![0]);
+        if (firstLetterInLowerTitle == sourceString[0])
+            return sourceString;
+        
+        // To protect stack by stackoverflow
+        if (memoryOptimization is false
+            || sourceString!.Length > MaxOptimizationStringLength)
+            return $"{CultureInfo.CurrentCulture.TextInfo.ToLower(sourceString[0])}{sourceString[1..]}";
+        
+        Span<char> transformedString = stackalloc char[sourceString.Length];
+
+        for (var i = 0; i < sourceString.Length; i++)
+        {
+            if (i == 0)
+            {
+                transformedString[i] = firstLetterInLowerTitle;
+            }
+            else
+                transformedString[i] = sourceString[i];
+        }
+
+        return new string(transformedString);
+    }
 }

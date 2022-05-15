@@ -1,5 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Engines;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 using DotNetEveryDay.Extensions.Extensions;
 
@@ -7,40 +9,38 @@ namespace DotNetEveryDay.Benchmark;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static void Main()
     {
-        var summary = BenchmarkRunner.Run(typeof(Program).Assembly);
+        var config = new ManualConfig();
+        config.AddJob(Job.ShortRun);
+        config.AddLogger(DefaultConfig.Instance.GetLoggers().ToArray());
+        config.AddExporter(DefaultConfig.Instance.GetExporters().ToArray());
+        config.AddColumnProvider(DefaultConfig.Instance.GetColumnProviders().ToArray());
+        BenchmarkRunner.Run(typeof(Program).Assembly, config);
     }
+}
 
-    [MemoryDiagnoser]
-    [MinColumn, MaxColumn, MedianColumn, StdErrorColumn]
-    [SimpleJob(RunStrategy.Monitoring)]
-    public class BenchmarkMethods
+[MemoryDiagnoser(false)]
+[SimpleJob(RunStrategy.ColdStart)]
+public class BenchmarkMethods
+{
+    [Params("the minimum observed iteration time is 1.9590 us which is very small." +
+            " It's recommended to increase it to at least 100.0000 ms using more operations.",
+        "The minimum observed iteration time is 1.9590 us which is very small." +
+        "It's recommended to increase it to at least 100.0000 ms using more operations." )]
+
+    public string? SomeString { get; set; }
+        
+    
+    [Benchmark]
+    public void ToLowerStart()
     {
-        private static IEnumerable<MyClass> CreateCollection(int count)
-        {
-            for (int i = 0; i < count; i++)
-            {
-                if(i == count/2)
-                    yield return new MyClass() {SomeName = count + "" + i};
-                else
-                    yield return new MyClass() {SomeName = count + "" + (i - 1)};
-            }
-        }
         
-        [Params(100000, 1000000)]
-        public int Count { get; set; }
+    }
         
-        [Benchmark]
-        public void HasDuplicates()
-        {
-            var collection = CreateCollection(Count);
-            collection.HasDuplicates(x => x.SomeName);
-        }
+    [Benchmark]
+    public void ToLowerStart_Op()
+    {
         
-        private class MyClass
-        {
-            public string SomeName { get; init; }
-        }
     }
 }
