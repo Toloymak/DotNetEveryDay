@@ -98,4 +98,90 @@ public class StringExtensions
 
         resultString.Should().BeEquivalentTo(expectedString);
     }
+
+    [Theory]
+    [InlineData(null, null)]
+    [InlineData("", "")]
+    [InlineData(" ", " ")]
+    [InlineData("T", "t")]
+    [InlineData("t", "t")]
+    [InlineData("test", "test")]
+    [InlineData("Test", "test")]
+    [InlineData("TeSt", "teSt")]
+    [InlineData("Test with different register", "testWithDifferentRegister")]
+    [InlineData("Test With Space", "testWithSpace")]
+    [InlineData("Test With-dash", "testWithDash")]
+    [InlineData("Test With-mixed_dash", "testWithMixedDash")]
+    [InlineData(
+        "Test TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest" +
+        " TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest" +
+        " TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest" +
+        " TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest" +
+        " TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest" +
+        " TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest " +
+        "TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest " +
+        "TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest " +
+        "TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest Test",
+        
+        "testTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest")]
+    // Test with no optimisation
+    public void ToCamelCase_ReturnResult(string? sourceString, string? expectedString)
+    {
+        // Act
+        var result = sourceString.ToCamelCase();
+        
+        // Assert
+        result.Should().Be(expectedString);
+    }
+    
+    [Theory]
+    [InlineData(null, null)]
+    [InlineData("", "")]
+    [InlineData(" ", " ")]
+    [InlineData("T", "T")]
+    [InlineData("t", "T")]
+    [InlineData("test", "Test")]
+    [InlineData("Test", "Test")]
+    [InlineData("TeSt", "TeSt")]
+    [InlineData("Test with different register", "TestWithDifferentRegister")]
+    [InlineData("Test With Space", "TestWithSpace")]
+    [InlineData("Test With-dash", "TestWithDash")]
+    [InlineData("Test With-mixed_dash", "TestWithMixedDash")]
+    // Test with no optimisation
+    [InlineData(
+        "Test TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest" +
+        " TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest" +
+        " TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest" +
+        " TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest" +
+        " TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest" +
+        " TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest " +
+        "TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest " +
+        "TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest " +
+        "TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest TestTest Test",
+        
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" +
+        "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest")]
+    public void ToPascalCase_ReturnResult(string? sourceString, string? expectedString)
+    {
+        // Act
+        var result = sourceString.ToPascalCase();
+        
+        // Assert
+        result.Should().Be(expectedString);
+    }
 }
